@@ -2,13 +2,15 @@
 
 	/**
 	*
-	* AuthController. 
+	* AuthController. Отвечает за авторизацию пользователя
 	*
 	*/
 
 	//Подключение необходимых компонентов
 	require_once 'Controller.php';
 	require_once '../models/UsersModel.php';
+	require_once '../requests/AuthRequest.php';
+
 
 	class AuthController extends Controller
 	{
@@ -33,8 +35,6 @@
 		*/
 		public function authAction()
 		{
-			require_once '../requests/AuthRequest.php';
-
 			//Проверяет все поля на заполнение
 			$request = new AuthRequest;
 			$resData = $request->checkParams();
@@ -46,7 +46,7 @@
 			}
 
 			//Фильтруем данные полей, хешируем пароль
-			$resData = [];
+			$resData = ['success' => 0, 'message' => INVALID_EMAIL_OR_PASSWORD];
 			$userEmail = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 			$userPassword = md5($_POST['password']);
 
@@ -56,14 +56,9 @@
 			if ($userData) {
 				$_SESSION['userData'] = $userData;
 				$resData['success'] = 1;
-				echo json_encode($resData);
-				return;
-			} else {
-				$resData['success'] = 0;
-				$resData['message'] = 'Неверно введен email или пароль';
-				echo json_encode($resData);				
-				return;
 			}
+			echo json_encode($resData);
+			return;
 		}
 
 	}

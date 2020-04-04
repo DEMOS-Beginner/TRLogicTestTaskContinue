@@ -36,11 +36,11 @@
 			}
 
 			if (md5($old_password) != $_SESSION['userData']['password']) {
-				$result['message'] = INVALID_PASSWORD;
+				$result['message'] = PASSWORD_INVALID;
 			}
 
 			if (! preg_match('/@/', $email)) {
-				$result['message'] =  NOT_EMAIL;	
+				$result['message'] = NOT_EMAIL;	
 			}
 
 			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу

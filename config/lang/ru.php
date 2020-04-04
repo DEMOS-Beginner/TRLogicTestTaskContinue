@@ -19,7 +19,10 @@
 	define(ENTER_EMAIL, 'Введите Email');
 	define(ENTER_PASSWORD, 'Введите пароль');
 	define(ENTER_PASSWORD2, 'Введите повторный пароль');	
-	define(ENTER_CITY, 'Введите ваш город');	
+	define(ENTER_CITY, 'Введите ваш город');
+	define(ENTER_OLD_PASSWORD, 'Введите старый пароль');
+	define(INVALID_EMAIL_OR_PASSWORD, 'Неверный пароль или email');
+	define(PASSWORD_INVALID, 'Неверный пароль');			
 	define(PASSWORD_MISMATCH, 'Пароли не совпадают');
 	define(PASSWORD_MIN_LENGTH, 'Длина пароля должна быть больше 6 символов');
 	define(ENTER_ABOUT, 'Заполните информацию о себе');
@@ -35,5 +38,4 @@
 	define(EDIT, 'Изменить');
 	define(EDIT_FORM, 'Форма редактирования');
 	define(OLD_PASSWORD_PLACEHOLDER, 'Старый пароль');
-	define(ENTER_OLD_PASSWORD, 'Введите старый пароль');
-	define(INVALID_PASSWORD, 'Неверный пароль');	
+	define(EMAIL_REPEATED, 'Пользователь с таким email уже существует');

@@ -28,7 +28,7 @@
 		public function setlangAction()
 		{
 			$_SESSION['lang'] = $_POST['lang'];
-			$resData['success'] = 1;
+			$resData = ['success' => 1];
 			echo json_encode($resData);
 			return;
 		}

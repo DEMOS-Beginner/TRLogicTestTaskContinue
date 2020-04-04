@@ -15,12 +15,14 @@
 
 		/**
 		* Имя контроллера
+		* @var string $controllerName
 		*/
 		private $controllerName;
 
 
 		/**
 		* Имя метода в контроллере
+		* @var string $actionName
 		*/
 		private $actionName;
 

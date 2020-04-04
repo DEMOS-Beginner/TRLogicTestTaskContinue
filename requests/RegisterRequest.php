@@ -13,6 +13,7 @@
 
 		/**
 		* Проверяет регистрационные поля на корректную заполненность
+		* @return array $result
 		*/
 		public function checkParams()
 		{
@@ -32,11 +33,7 @@
 			}
 
 			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
-			foreach(array_reverse($this->data) as $key => $value) {
-				if (!$value) {
-					$result['message'] = constant('ENTER_'.strtoupper($key));
-				}
-			}
+			$this->check_fullness($result);
 
 			//Если возникла какая-то проблема, значит не все поля корректно заполнены.
 			if ($result['message']) {

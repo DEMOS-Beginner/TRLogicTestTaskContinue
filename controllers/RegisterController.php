@@ -9,6 +9,8 @@
 	//Подключение необходимых компонентов
 	require_once 'Controller.php';
 	require_once '../models/UsersModel.php';
+	require_once '../requests/RegisterRequest.php';	
+	require_once '../components/ImageUploader.php';	
 
 	class RegisterController extends Controller
 	{
@@ -33,8 +35,6 @@
 		*/
 		public function registerAction()
 		{
-			require_once '../requests/RegisterRequest.php';
-
 			//Проверяет все поля на заполнение
 			$request = new RegisterRequest;
 			$resData = $request->checkParams();
@@ -57,7 +57,7 @@
 			$model = new UsersModel;
 			if ($model->checkUserEmail($userEmail)) {
 				$resData['success'] = 0;
-				$resData['message'] = 'Пользователь с таким email уже существует';
+				$resData['message'] = EMAIL_REPEATED;
 				echo json_encode($resData);
 				return;
 			}
@@ -78,18 +78,15 @@
 		*/
 		public function uploadAction()
 		{
-			$uploadFile = FILE_UPLOAD_PATH.basename($_FILES['image']['name']);
+			$imageUploader = new ImageUploader;
+			$filePath = $imageUploader->getImagePath();
 
-			$fileExt = explode('.', $uploadFile)[1];
-
-			//Если это фотография, то копирем фото на сервер.
-			if (in_array($fileExt, FILE_EXTENSIONS)){
-				copy($_FILES['image']['tmp_name'], $uploadFile);
+			//Копируем фото на сервер.
+			if ($imageUploader->copyImageToServer($filePath)){
 
 				//Генерируем новое уникальное имя.
-				$newName = uniqid().'.'.$fileExt;
-				$newPath = FILE_UPLOAD_PATH.$newName;
-				rename($uploadFile, $newPath);
+				$newName = $imageUploader->generateNewFileName();
+				$newPath = $imageUploader->getNewPath($filePath);
 
 				//Загружаем название фото в базу данных.
 				$model = new UsersModel;

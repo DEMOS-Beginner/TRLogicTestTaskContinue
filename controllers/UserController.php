@@ -8,6 +8,7 @@
 
 	require_once 'Controller.php';
 	require_once '../models/UsersModel.php';
+	require_once '../requests/EditRequest.php';	
 
 	class UserController extends Controller
 	{
@@ -35,7 +36,7 @@
 		{
 			if (isset($_SESSION['userData'])) {
 				unset($_SESSION['userData']);
-				$resData['success'] = 1;
+				$resData = ['success' => 1];
 				echo json_encode($resData);
 				return;
 			}
@@ -57,13 +58,12 @@
 			$this->loadTemplate('footer');
 		}
 
+
 		/**
 		* Редактирует данные пользователя
 		*/
 		public function editAction()
 		{
-			require_once '../requests/EditRequest.php';
-
 			$request = new EditRequest;
 			$resData = $request->checkParams();
 
@@ -78,31 +78,34 @@
 			$userName = filter_var(trim($_POST['name']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$userEmail = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 			$userCity = filter_var(trim($_POST['city']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			//К этому моменту мы точно знаем, что повтор пароля и новый пароль совпадают		
-			if ($_POST['password']) {
-				$userPassword = md5($_POST['password']);
-			} else {
-				$userPassword = md5($_POST['old_password']);
-			}
 			$aboutUser = filter_var(trim($_POST['about']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-			//Если пользователь с таким Email существует, то вызываем ошибку.
+			//К этому моменту мы точно знаем, что повтор пароля и новый пароль совпадают
+			//Если в поле для пароля было что-то введено, значит пользователь хочет сменить пароль	
+			if ($_POST['password']) {
+				$userPassword = md5($_POST['password']);
+			} else { //Иначе будем класть в базу старый пароль
+				$userPassword = md5($_POST['old_password']);
+			}
+
 			$model = new UsersModel;
+			//Если использовали чужой Email, то вызываем ошибку
 			if ($userEmail && $userEmail != $_SESSION['userData']['email']) {
 				if ($model->checkUserEmail($userEmail)) {
 					$resData['success'] = 0;
-					$resData['message'] =  USER_EMAIL_REPEATED;
+					$resData['message'] = EMAIL_REPEATED;
 					echo json_encode($resData);
 					return;
 				}
 			}
 
-			//Если пользователь успешно зарегистрирован, то кладём его данные в сессию.
 			$userData = $model->updateUserData($userName, $userEmail, $userCity, $userPassword, $aboutUser);
+			//Если данные успешно обновлены, то кладём их в сессию.
 			if ($userData) {
 				$_SESSION['userData'] = $userData;
 				$resData['success'] = 1;
 				echo json_encode($resData);
+				return;
 			}			
 		}
 	}

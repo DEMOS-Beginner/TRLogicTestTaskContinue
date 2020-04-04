@@ -12,6 +12,7 @@
 	class Controller
 	{
 
+
 		/**
 		* Загружает шаблон страницы
 		*
@@ -23,5 +24,6 @@
 			extract($context); //распаковывает массив на переменные
 			include TEMPLATE_PATH_PREFIX.$templateName.TEMPLATE_PATH_POSTFIX;
 		}
+
 
 	}

@@ -21,8 +21,8 @@
 	define(ENTER_PASSWORD2, 'Enter repeat password');
 	define(ENTER_CITY, 'Enter your city');
 	define(ENTER_OLD_PASSWORD, 'Enter old password');
-	define(INVALID_EMAIL_OR_PASSWORD, 'Неверный пароль или email');
-	define(PASSWORD_INVALID, 'Неверный пароль');
+	define(INVALID_EMAIL_OR_PASSWORD, 'Invalid password or email');
+	define(PASSWORD_INVALID, 'Invalid password');
 	define(PASSWORD_MISMATCH, 'Password mismatch');
 	define(PASSWORD_MIN_LENGTH, 'Password must be longer than 6 characters');
 	define(ENTER_ABOUT, 'Fill in information about yourself');

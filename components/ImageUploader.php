@@ -57,7 +57,7 @@
 	
 		/**
 		* Проверяет, что расширение загружаемого файла допустимо
-		*
+		* @return boolean
 		*/
 		protected function checkExtensions()
 		{

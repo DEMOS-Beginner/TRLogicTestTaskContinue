@@ -110,4 +110,34 @@
 			return $result;
 		}
 
+
+		/**
+		* Обновляет данные пользователя в базе данных
+		* @param string $userName
+		* @param string $userEmail
+		* @param string $userPassword
+		* @return array $userData
+		*/
+		public function updateUserData($userName, $userEmail, $userCity, $userPassword, $aboutUser)
+		{
+			//Обновляем данные пользователя
+			$sql = 'UPDATE users SET name = :name, email = :email, city = :city, password = :password, about = :about WHERE id = :id';
+			$query = $this->db->prepare($sql);
+			$result = $query->execute([
+				'name'     => $userName,
+				'email'    => $userEmail,
+				'city'     => $userCity,
+				'password' => $userPassword,
+				'about'    => $aboutUser,
+				'id'       => $_SESSION['userData']['id'],
+			]);
+
+			//Если пользователь успешно зарегистрировался, то сразу логиним его
+			if ($result) {
+				$userData = $this->loginUser($userEmail, $userPassword);
+				return $userData;
+			} 
+
+			return $result;
+		}
 	}

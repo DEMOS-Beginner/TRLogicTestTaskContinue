@@ -20,6 +20,7 @@
 				</form>
 				<br>					
 				<p class="aboutme"> <?=$_SESSION['userData']['about']?> </p>
+				<a href="/user/editpage" class='btn btn-primary'> <?=EDIT?> </a>
 			</div>		
 		</div>
 	</div>

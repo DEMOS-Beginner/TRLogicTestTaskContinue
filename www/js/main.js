@@ -84,6 +84,43 @@ function logout()
 }
 
 /**
+* Посылает AJAX запрос в UserController для редактирования профиля
+*/
+function edit()
+{
+	formData = getData('#editData');
+
+	$.ajax({
+		type: 'POST',
+		data: formData,
+		dataType: 'json',
+		url: '/user/edit',
+		async: true,
+		success: function(data) {
+			if (!data['success']) {
+				$('#editErrors').show();
+				$('#errorText').html(data['message']);
+			} else {
+				location.href = '/user';
+			}
+		},
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
+	});
+}
+
+/**
+* Показывает блок изменения пароля
+*/
+function showEditPassword()
+{
+	$('#editPassword').show();
+	$('#editPasswordLink').hide();
+
+}
+
+/**
 * Скрывает сообщение с id = blockId
 */
 function closeMessage(blockId)

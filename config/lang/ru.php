@@ -32,3 +32,8 @@
 	define(NOT_EMAIL, 'Некорректный Email. Обычно email содержит символ @');
 	define(IMAGE_UPLOAD, 'Загрузить фото');
 	define(FILE_MAX_SIZE, 'Макс. размер 8мб');
+	define(EDIT, 'Изменить');
+	define(EDIT_FORM, 'Форма редактирования');
+	define(OLD_PASSWORD_PLACEHOLDER, 'Старый пароль');
+	define(ENTER_OLD_PASSWORD, 'Введите старый пароль');
+	define(INVALID_PASSWORD, 'Неверный пароль');	

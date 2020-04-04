@@ -7,10 +7,10 @@
 	*/
 
 	$dblocation = '127.0.0.1'; //ip базы данных
-	$dbname = 'test_trlogic'; //название базы
+	$dbname = 'trlogic_blog'; //название базы
 	$dbuser = 'root'; //имя пользователя
 	$dbpassword = ''; //пароль пользователя
-	$hostName = 'trlogic'; //имя хоста
+	$hostName = 'blog.local'; //имя хоста
 
 	//Установка соединения
 	try {

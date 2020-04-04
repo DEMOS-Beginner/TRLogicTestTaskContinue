@@ -32,3 +32,8 @@
 	define(NOT_EMAIL, 'Invalid Email. Email usually contains the @ character');
 	define(IMAGE_UPLOAD, 'Upload photo');
 	define(FILE_MAX_SIZE, 'Max size 8mb');
+	define(EDIT, 'Edit profile');	
+	define(EDIT_FORM, 'Edit form');
+	define(OLD_PASSWORD_PLACEHOLDER, 'Old password');
+	define(ENTER_OLD_PASSWORD, 'Enter old password');
+	define(INVALID_PASSWORD, 'Invalid password');

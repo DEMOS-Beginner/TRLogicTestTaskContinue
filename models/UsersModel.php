@@ -140,4 +140,35 @@
 
 			return $result;
 		}
+
+		/**
+		* Возвращает данные обо всех пользователях
+		* @return array $users
+		*/
+		public function getAllUsers()
+		{
+			$sql = 'SELECT id, name, city, about, email, image FROM users';
+			$query = $this->db->prepare($sql);
+			$query->execute();
+			$users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+			return $users;
+		}
+
+
+		/**
+		* Возвращает данные пользователя c указанным id
+		* @param int $id
+		* @return array $userData
+		*/
+		public function getUserById($id)
+		{
+			$sql = 'SELECT * FROM users WHERE id = :id';
+			$query = $this->db->prepare($sql);
+			$query->execute(['id' => $id]);
+			$userData = $query->fetch(PDO::FETCH_ASSOC);
+
+			return $userData;			
+		}
+
 	}

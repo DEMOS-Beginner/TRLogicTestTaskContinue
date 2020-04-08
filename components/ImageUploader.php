@@ -32,6 +32,16 @@
 
 
 		/**
+		* Возвращает данные о изображении
+		* @return string $image
+		*/
+		public function checkImage()
+		{
+			return $this->image['name'];
+		}
+
+
+		/**
 		* Возвращает путь, где будет лежать изображение после загрузки
 		* @return string $imagePath
 		*/

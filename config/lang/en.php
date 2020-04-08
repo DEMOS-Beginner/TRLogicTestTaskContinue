@@ -13,6 +13,7 @@
 	define(SIGN_IN, 'Sign in');
 	define(SIGN_UP, 'Sign up');
 	define(TO_PROFILE, 'Go to profile');
+	define(ALL_USERS, 'All users');		
 	define(LOGIN_FORM, 'Login form');
 	define(REGISTER_FORM, 'Register form');
 	define(ENTER_NAME, 'Enter your name');
@@ -38,4 +39,8 @@
 	define(EDIT, 'Edit profile');	
 	define(EDIT_FORM, 'Edit form');
 	define(OLD_PASSWORD_PLACEHOLDER, 'Old password');
-	define(EMAIL_REPEATED, 'User with this email already exists');	
+	define(EMAIL_REPEATED, 'User with this email already exists');
+	define(UPLOAD_IMAGE_ERROR, 'Upload image');
+	define(UPLOAD_ERROR, 'Error loading file');
+	define(UPLOAD_EXTENSION_ERROR, 'Files with this extension are not supported');
+	

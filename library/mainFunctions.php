@@ -21,7 +21,7 @@
 				."&nbsp; -- ". dirname($a['file']);
 		}
 
-		echo "<pre>";
+		echo "<pre style='background: #01001c; color: white; padding: 5px;'>";
 			$trace = debug_backtrace();
 			array_walk($trace, 'debugOut');
 			echo "\n\n";

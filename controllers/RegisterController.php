@@ -79,6 +79,9 @@
 		public function uploadAction()
 		{
 			$imageUploader = new ImageUploader;
+			if (!$imageUploader->checkImage()) {
+				redirect("/user?error=".UPLOAD_IMAGE_ERROR);
+			}
 			$filePath = $imageUploader->getImagePath();
 
 			//Копируем фото на сервер.
@@ -94,10 +97,10 @@
 					$_SESSION['userData']['image'] = $newName;
 					redirect('/user');
 				} else {
-					echo "Ошибка при загрузке файла";
+					redirect('/user?error='.UPLOAD_ERROR);
 				}
 			}
-			echo "Файлы с таким расширением не поддерживаются";
+			redirect('/user?error='.UPLOAD_EXTENSION_ERROR);
 		}
 
 	}

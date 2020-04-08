@@ -14,7 +14,7 @@
 	{
 
 		/**
-		* Занимается формированием страницы авторизации
+		* Занимается формированием страницы пользователя
 		*/
 		public function indexAction()
 		{
@@ -23,12 +23,37 @@
 				redirect('/');
 			}
 
+			$userId = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['userData']['id'];
+			$error = isset($_GET['error']) ? $_GET['error'] : null;
+
+			$model = new UsersModel;
+			$userData = $model->getUserById($userId);
+
 			$this->loadTemplate('header');
-			$this->loadTemplate('user');
+			$this->loadTemplate('user', ['userData' => $userData, 'error' => $error]);
 			$this->loadTemplate('footer');
 		}
 
-		
+
+		/**
+		* Занимается формированием страницы со всеми пользователями
+		*/
+		public function allAction()
+		{
+			//Доступ только для авторизованных пользователей
+			if (!isset($_SESSION['userData'])) {
+				redirect('/');
+			}
+
+			$model = new UsersModel;
+			$users = $model->getAllUsers();
+
+			$this->loadTemplate('header');
+			$this->loadTemplate('all_users', ['users' => $users]);
+			$this->loadTemplate('footer');
+		}
+	
+
 		/**
 		* Удаляет сессию пользователя, таким образом осуществляет выход из аккаунта
 		*/

@@ -14,11 +14,14 @@
 				</a>			
 			</div>
 		<?php else: ?>
-		<div class="row justify-content-center">
-			<a href="/user" class='btn btn-primary'>
-				<?=TO_PROFILE?>
-			</a>			
-		</div>
+			<div class="row justify-content-center">
+				<a href="/user" class='btn btn-primary'>
+					<?=TO_PROFILE?>
+				</a>			
+				<a href="/user/all" class='btn btn-primary ml-3'>
+					<?=ALL_USERS?>
+				</a>
+			</div>
 		<?php endif; ?>
 	</div>
 </div>	

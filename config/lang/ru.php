@@ -12,6 +12,7 @@
 	define(WELCOME, 'Добро пожаловать!');
 	define(SIGN_IN, 'Войти на сайт');
 	define(SIGN_UP, 'Зарегистрироваться');
+	define(ALL_USERS, 'Все пользователи');	
 	define(TO_PROFILE, 'Перейти в профиль');
 	define(LOGIN_FORM, 'Форма авторизации');
 	define(REGISTER_FORM, 'Форма регистрации');
@@ -39,3 +40,6 @@
 	define(EDIT_FORM, 'Форма редактирования');
 	define(OLD_PASSWORD_PLACEHOLDER, 'Старый пароль');
 	define(EMAIL_REPEATED, 'Пользователь с таким email уже существует');
+	define(UPLOAD_IMAGE_ERROR, 'Загрузите изображение');
+	define(UPLOAD_ERROR, 'Ошибка при загрузке файла');
+	define(UPLOAD_EXTENSION_ERROR, 'Файлы с таким расширением не поддерживаются');

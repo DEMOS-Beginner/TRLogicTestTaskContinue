@@ -6,21 +6,38 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6 profile">
+				<?php if ($error): ?>
+					<div class="row" id='uploadError'>
+						<div class="col-md-12">
+							<div class="alert alert-danger" role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'
+								onclick='closeMessage("#uploadError");'>
+									<span aria-hidden='true'>x</span>
+								</button>
+								<span> <?=$error?></span>
+							</div>			
+						</div>
+					</div>
+				<?php endif; ?>
 				<div class="base_info">
-					<img class='avatar' src='<?=FILE_UPLOAD_PATH.$_SESSION['userData']['image']?>' width='150'>
+					<img class='avatar' src='<?=FILE_UPLOAD_PATH.$userData["image"]?>' width='150'>
 					<div class="info">
-						<h2> <?=$_SESSION['userData']['name']?> </h2>
-						<span> <?=EMAIL_PLACEHOLDER.': '.$_SESSION['userData']['email']?> </span> <br>
-						<span> <?=CITY_PLACEHOLDER.': '.$_SESSION['userData']['city']?> </span>				
+						<h2> <?=$userData['name']?> </h2>
+						<span> <?=EMAIL_PLACEHOLDER.': '.$userData['email']?> </span> <br>
+						<span> <?=CITY_PLACEHOLDER.': '.$userData['city']?> </span>				
 					</div>
 				</div>
-				<form action="/register/upload" method='POST' enctype="multipart/form-data">
-					<input type="file" name='image'> <br>
-					<button type='submit'> <?=IMAGE_UPLOAD?> </button> <span> (<?=FILE_MAX_SIZE?>) </span>
-				</form>
-				<br>					
-				<p class="aboutme"> <?=$_SESSION['userData']['about']?> </p>
-				<a href="/user/editpage" class='btn btn-primary'> <?=EDIT?> </a>
+				<?php if ($userData['id'] === $_SESSION['userData']['id']): ?>
+					<form action="/register/upload" method='POST' enctype="multipart/form-data">
+						<input type="file" name='image'> <br>
+						<button type='submit'> <?=IMAGE_UPLOAD?> </button> <span> (<?=FILE_MAX_SIZE?>) </span>
+					</form>
+					<br>
+				<?php endif; ?>			
+				<p class="aboutme"> <?=$userData['about']?> </p>
+				<?php if ($userData['id'] === $_SESSION['userData']['id']): ?>
+					<a href="/user/editpage" class='btn btn-primary'> <?=EDIT?> </a>
+				<?php endif; ?>	
 			</div>		
 		</div>
 	</div>

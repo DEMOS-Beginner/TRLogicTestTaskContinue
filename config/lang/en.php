@@ -43,4 +43,7 @@
 	define(UPLOAD_IMAGE_ERROR, 'Upload image');
 	define(UPLOAD_ERROR, 'Error loading file');
 	define(UPLOAD_EXTENSION_ERROR, 'Files with this extension are not supported');
+	define(USERNAME, 'Username');
+	define(USER_EMAIL, 'Email');
+	define(USER_ID, 'ID');	
 	

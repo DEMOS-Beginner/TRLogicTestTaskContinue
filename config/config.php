@@ -19,5 +19,5 @@
 	define(TEMPLATE_PATH_POSTFIX, '.php'); //тип файлов
 
 	//Константы для изображений
-	define(FILE_UPLOAD_PATH, 'images/avatars/'); //путь загрузки аватаров
+	define(FILE_UPLOAD_PATH, '/images/avatars/'); //путь загрузки аватаров
 	define(FILE_EXTENSIONS, ['png', 'jpg', 'gif', 'JPG', 'PNG']); //поддерживаемые расширения

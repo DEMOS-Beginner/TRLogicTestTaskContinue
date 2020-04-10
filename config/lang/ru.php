@@ -43,3 +43,6 @@
 	define(UPLOAD_IMAGE_ERROR, 'Загрузите изображение');
 	define(UPLOAD_ERROR, 'Ошибка при загрузке файла');
 	define(UPLOAD_EXTENSION_ERROR, 'Файлы с таким расширением не поддерживаются');
+	define(USERNAME, 'Имя пользователя');
+	define(USER_EMAIL, 'Email');
+	define(USER_ID, 'Идентификатор');

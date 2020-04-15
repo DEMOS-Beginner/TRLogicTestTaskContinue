@@ -10,6 +10,25 @@
 
 	class EditRequest extends Request
 	{
+		
+		/**
+		* Проверяет поля на заполненность
+		* @param array $result
+		*/
+		public function checkFullness(&$result)
+		{
+			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
+			foreach(array_reverse($this->data) as $key => $value) {
+				if (!$value && !in_array($key, ['password', 'password2']) ) {
+					$result['message'] = constant('ENTER_'.strtoupper($key));
+					$result['success'] = 0;
+				} else if ($result['success'] !== 0) {
+					$result['success'] = 1;
+				}
+			}
+
+		}
+
 
 		/**
 		* Проверяет регистрационные поля на корректную заполненность
@@ -43,21 +62,8 @@
 				$result['message'] = NOT_EMAIL;	
 			}
 
-			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
-			foreach(array_reverse($this->data) as $key => $value) {
-				if (!$value && !in_array($key, ['password', 'password2']) ) {
-					$result['message'] = constant('ENTER_'.strtoupper($key));
-				}
-			}
+			$this->checkFullness($result);
 
-			//Если возникла какая-то проблема, значит не все поля корректно заполнены.
-			if ($result['message']) {
-				$result['success'] = 0;
-				return $result;
-			}
-
-			//Если проблем не возникло, значит всё хорошо.
-			$result['success'] = 1;
 			return $result;
 		}
 

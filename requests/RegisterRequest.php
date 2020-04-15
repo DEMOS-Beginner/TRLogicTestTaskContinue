@@ -33,16 +33,8 @@
 			}
 
 			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
-			$this->check_fullness($result);
+			$this->checkFullness($result);
 
-			//Если возникла какая-то проблема, значит не все поля корректно заполнены.
-			if ($result['message']) {
-				$result['success'] = 0;
-				return $result;
-			}
-
-			//Если проблем не возникло, значит всё хорошо.
-			$result['success'] = 1;
 			return $result;
 		}
 

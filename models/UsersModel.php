@@ -6,23 +6,11 @@
 	*
 	*/
 
-	class UsersModel
+	//Подключение необходимых компонентов
+	require_once 'Model.php';
+
+	class UsersModel extends Model
 	{
-
-		/**
-		* Соединение с базой данных
-		*/
-		protected $db;
-
-
-		/**
-		* Конструктор модели
-		*/
-		public function __construct()
-		{
-			$this->db = $GLOBALS['db'];
-		}
-
 
 		/**
 		* Проверяет не зарегистрирован ли уже пользователь с таким email

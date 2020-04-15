@@ -32,7 +32,7 @@
 
 
 		/**
-		* Возвращает данные о изображении
+		* Возвращает имя изображения
 		* @return string $image
 		*/
 		public function checkImage()

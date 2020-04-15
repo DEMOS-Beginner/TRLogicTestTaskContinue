@@ -154,3 +154,28 @@ function setLang(nowLang)
 		}
 	});	
 }
+
+
+/**
+* Отправляет сообщение от пользователя пользователю
+*/
+function sendMessage()
+{
+	formData = getData('#messageData');
+
+	$.ajax({
+		type: 'POST',
+		data: formData,
+		dataType: 'json',
+		url: '/message/send',
+		async: true,
+		success: function(data) {
+			if (!data['success']) {
+				$('#messageErrors').show();
+				$('#errorText').html(data['message']);
+			} else {
+				location.reload();
+			}
+		}
+	});	
+}

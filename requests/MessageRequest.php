@@ -2,13 +2,13 @@
 	
 	/**
 	*
-	* Request для AuthController@auth
+	* Request для MessagesController@send
 	*
 	*/
 
 	require_once 'Request.php';
 
-	class AuthRequest extends Request
+	class MessageRequest extends Request
 	{
 
 		/**

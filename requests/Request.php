@@ -36,12 +36,15 @@
 		* Проверяет поля на заполненность
 		* @param array $result
 		*/
-		public function check_fullness(&$result)
+		public function checkFullness(&$result)
 		{
 			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
 			foreach(array_reverse($this->data) as $key => $value) {
 				if (empty($value)) {
 					$result['message'] = constant('ENTER_'.strtoupper($key));
+					$result['success'] = 0;
+				} else if ($result['success'] !== 0) {
+					$result['success'] = 1;
 				}
 			}
 

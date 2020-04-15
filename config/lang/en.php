@@ -45,5 +45,8 @@
 	define(UPLOAD_EXTENSION_ERROR, 'Files with this extension are not supported');
 	define(USERNAME, 'Username');
 	define(USER_EMAIL, 'Email');
-	define(USER_ID, 'ID');	
-	
+	define(USER_ID, 'ID');
+	define(USER_IMAGE, 'Photo');
+	define(SEND_MESSAGE, 'Send message');
+	define(ENTER_MESSAGE, 'Enter your message');
+	define(NO_MESSAGES, 'No messages');

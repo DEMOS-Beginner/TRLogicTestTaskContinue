@@ -74,12 +74,16 @@
 	color: white;
 }
 
-.profile {
+.profile, .wall {
 	margin-top: 10px;
 	background-color: white;
 	height: auto;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	padding: 15px;
+}
+
+.wall {
+	background: lightblue;
 }
 
 .base_info {
@@ -94,3 +98,24 @@
 .avatar {
 	display: block;
 }
+
+.normal {
+	height: auto;
+}
+
+.message_avatar {
+	border-radius: 15px;
+}
+
+.message {
+	width: 100%;
+	height: auto;
+	background: white;
+	border-radius: 10px;
+	word-wrap: break-word;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+

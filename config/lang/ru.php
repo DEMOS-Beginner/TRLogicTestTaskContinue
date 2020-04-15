@@ -46,3 +46,7 @@
 	define(USERNAME, 'Имя пользователя');
 	define(USER_EMAIL, 'Email');
 	define(USER_ID, 'Идентификатор');
+	define(USER_IMAGE, 'Фото');
+	define(SEND_MESSAGE, 'Отправить сообщение');
+	define(ENTER_MESSAGE, 'Напишите сообщение');
+	define(NO_MESSAGES, 'Нет сообщений');	

@@ -101,7 +101,7 @@
 			//Фильтруем данные, полученные с полей. Хешируем пароль.
 			$resData = [];
 			$userName = filter_var(trim($_POST['name']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			$userEmail = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+			$userEmail = strtolower(filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL));
 			$userCity = filter_var(trim($_POST['city']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$aboutUser = filter_var(trim($_POST['about']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 

@@ -29,10 +29,10 @@
 	define(ENTER_ABOUT, 'Fill in information about yourself');
 	define(NAME_PLACEHOLDER, 'Full name');
 	define(EMAIL_PLACEHOLDER, 'Email');
-	define(CITY_PLACEHOLDER, 'City');	
+	define(CITY_PLACEHOLDER, 'City');
 	define(PASSWORD_PLACEHOLDER, 'Password');
 	define(ABOUTME_PLACEHOLDER, 'About me');
-	define(YOUR_PROFILE, 'Your profile');
+	define(PROFILE, 'Profile');
 	define(NOT_EMAIL, 'Invalid Email. Email usually contains the @ character');
 	define(IMAGE_UPLOAD, 'Upload photo');
 	define(FILE_MAX_SIZE, 'Max size 8mb');
@@ -50,3 +50,4 @@
 	define(SEND_MESSAGE, 'Send message');
 	define(ENTER_MESSAGE, 'Enter your message');
 	define(NO_MESSAGES, 'No messages');
+	define(CHOOSE_FILE, 'Choose file');	

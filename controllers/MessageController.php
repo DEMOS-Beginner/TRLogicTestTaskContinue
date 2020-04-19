@@ -9,7 +9,6 @@
 	//Подключение необходимых компонентов
 	require_once 'Controller.php';
 	require_once '../models/MessageModel.php';
-	require_once '../requests/MessageRequest.php';
 
 	class MessageController extends Controller
 	{
@@ -44,16 +43,7 @@
 			if (!isset($_SESSION['userData'])) {
 				redirect('/auth');
 			}
-			$result = [];
-
-			$request = new MessageRequest;
-			$result = $request->checkParams();
-
-			if (!$result['success']) {
-				echo json_encode($result);
-				return;
-			}
-
+			d($_FILES);
 			$text = filter_var(trim($_POST['message']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$authorId = $_POST['author_id'];
 			$recipientId = $_POST['recipient_id'];	
@@ -61,8 +51,7 @@
 			$model = new MessageModel;
 
 			if ($model->sendMessage($text, $authorId, $recipientId)) {
-				echo json_encode($result);
-				return;
+				redirect($_SERVER['QUERY_STRING']);
 			}
 
 		}

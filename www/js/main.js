@@ -2,6 +2,7 @@
 Главный js
 */
 
+
 /**
 * Функция позволяет получать данные из форм
 */
@@ -151,31 +152,6 @@ function setLang(nowLang)
 		async: true,
 		success: function(data) {
 			location.reload();
-		}
-	});	
-}
-
-
-/**
-* Отправляет сообщение от пользователя пользователю
-*/
-function sendMessage()
-{
-	formData = getData('#messageData');
-
-	$.ajax({
-		type: 'POST',
-		data: formData,
-		dataType: 'json',
-		url: '/message/send',
-		async: true,
-		success: function(data) {
-			if (!data['success']) {
-				$('#messageErrors').show();
-				$('#errorText').html(data['message']);
-			} else {
-				location.reload();
-			}
 		}
 	});	
 }

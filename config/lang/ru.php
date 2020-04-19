@@ -32,7 +32,7 @@
 	define(CITY_PLACEHOLDER, 'Город');
 	define(PASSWORD_PLACEHOLDER, 'Пароль');
 	define(ABOUTME_PLACEHOLDER, 'О себе');
-	define(YOUR_PROFILE, 'Ваш профиль');
+	define(PROFILE, 'Профиль');
 	define(NOT_EMAIL, 'Некорректный Email. Обычно email содержит символ @');
 	define(IMAGE_UPLOAD, 'Загрузить фото');
 	define(FILE_MAX_SIZE, 'Макс. размер 8мб');
@@ -50,3 +50,4 @@
 	define(SEND_MESSAGE, 'Отправить сообщение');
 	define(ENTER_MESSAGE, 'Напишите сообщение');
 	define(NO_MESSAGES, 'Нет сообщений');	
+	define(CHOOSE_FILE, 'Выбрать файл');

@@ -47,7 +47,7 @@
 
 			//Фильтруем данные полей, хешируем пароль
 			$resData = ['success' => 0, 'message' => INVALID_EMAIL_OR_PASSWORD];
-			$userEmail = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+			$userEmail = strtolower(filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL));
 			$userPassword = md5($_POST['password']);
 
 			//Осуществляем логин

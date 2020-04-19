@@ -13,34 +13,37 @@
 			</div>
 		</div>
 
-		<div class="row">
+
+		<div class="col-md-6">
+			<?php if (!empty($messages)): ?>
+				<div class="wall" id='wallMessages'>
+					<?php foreach ($messages as $message): ?>
+						<div class="message">
+							<img class='message_avatar' src='/<?=FILE_UPLOAD_PATH.$message["author_image"]?>' width='60'>							
+							<a href="/user/<?=$message['author_id']?>"> <?=$message['author_name']?> </a>
+							<p class='message_text mt-2'> <?=$message['text']?> </p>
+							<i> <?=$message['created_at']?> </i>
+						</div>
+					<?php endforeach ?>
+				</div>
+			<?php else: ?>
+				<h2> <?=NO_MESSAGES?> </h2>
+			<?php endif; ?>
+		</div>			
+
+
+		<div class="row mt-2">
 			<div class="col-md-6">
-				<div class="form-group" id='messageData'>
-					<textarea name="message" class='form-control' id="messageText" rows="5" placeholder='<?=ENTER_MESSAGE?>'></textarea>
-					<input type="hidden" name='author_id' value='<?=$_SESSION['userData']['id']?>'>
-					<input type="hidden" name='recipient_id' value='<?=$userId?>'>
-					<a href="#" class='btn btn-success' onclick='sendMessage();'> <?=SEND_MESSAGE?> </a>
+				<div class="form-group">
+					<form action="/message/send" method='POST' enctype='multipart/form-data'>
+						<textarea name="message" class='form-control' id="messageText" rows="5" placeholder='<?=ENTER_MESSAGE?>' required></textarea>
+						<input type="hidden" name='author_id' value='<?=$_SESSION['userData']['id']?>'>
+						<input type="hidden" name='recipient_id' value='<?=$userId?>'>
+						<button type='submit' class='btn btn-success'> <?=SEND_MESSAGE?> </button>							
+					</form>	
 				</div>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6">
-				<?php if (!empty($messages)): ?>
-					<div class="wall">
-						<?php foreach ($messages as $message): ?>
-							<div class="message">
-								<img class='message_avatar' src='/<?=FILE_UPLOAD_PATH.$message["user_image"]?>' width='60'>
-								<p> <?=$message['text']?> </p>
-								<i> <?=$message['created_at']?> </i>
-							</div>
-						<?php endforeach ?>
-					</div>
-				<?php else: ?>
-					<h2> <?=NO_MESSAGES?> </h2>
-				<?php endif; ?>
-			</div>			
-		</div>
+		</div>		
 	</div>
 
 </div>

@@ -34,6 +34,33 @@
 	
 
 	/**
+	* Возвращает отсортированный по полю массив массивов
+	* @param array $array
+	* @param string $fieldName
+	* @return array $sorted
+	*/
+	function sortArraysByIntField($arrays, $fieldName)
+	{
+		$values = [];
+		foreach($arrays as $array) {
+			$values[] = $array[$fieldName];
+		}
+		arsort($values);
+		$sorted = [];
+
+		foreach($values as $value) {
+			foreach($arrays as $array) {
+				if ($array['id'] === $value) {
+					$sorted[] = $array;
+				}
+			}
+		}	
+
+		return $sorted;
+	}
+
+
+	/**
 	* Перенаправляет на страницу с введёнными url
 	* @param string $url - URL
 	* @param array $errors - возможные ошибки

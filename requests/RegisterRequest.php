@@ -29,11 +29,13 @@
 			}
 
 			if (! preg_match('/@/', $email)) {
-				$result['message'] =  NOT_EMAIL;	
+				$result['message'] =  NOT_EMAIL;
 			}
 
 			//Проходит по полям, если поле не заполнено, то вызывает соответствующую константу
 			$this->checkFullness($result);
+
+			if($result['message']) $result['success'] = 0;
 
 			return $result;
 		}

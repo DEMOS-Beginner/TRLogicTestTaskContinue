@@ -1,17 +1,19 @@
 <div class="users_background pt-3">
 	
 	<div class="container">
-		<div class="row hideme" id='messageErrors'>
-			<div class="col-md-6">
-				<div class="alert alert-danger" role='alert'>
-					<button type='button' class='close' data-dismiss='alert' aria-label='Close'
-					onclick='closeMessage("#messageErrors");'>
-						<span aria-hidden='true'> x </span>
-					</button>
-					<span id='errorText'></span>
-				</div>			
+		<?php if ($error): ?>
+			<div class="row" id='uploadError'>
+				<div class="col-md-12">
+					<div class="alert alert-danger" role='alert'>
+						<button type='button' class='close' data-dismiss='alert' aria-label='Close'
+						onclick='closeMessage("#uploadError");'>
+							<span aria-hidden='true'>x</span>
+						</button>
+						<span> <?=$error?></span>
+					</div>			
+				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 
 
 		<div class="col-md-6">
@@ -22,6 +24,13 @@
 							<img class='message_avatar' src='/<?=FILE_UPLOAD_PATH.$message["author_image"]?>' width='60'>							
 							<a href="/user/<?=$message['author_id']?>"> <?=$message['author_name']?> </a>
 							<p class='message_text mt-2'> <?=$message['text']?> </p>
+							<?php if ($message['file']): ?>
+								<div class="card">
+									<div class="card-body">
+										<a download href='/<?=FILE_UPLOAD_PATH.$message["file"]?>' class='file'> <?=$message['original_filename']?> </a> <br>										
+									</div>
+								</div>
+							<?php endif; ?>
 							<i> <?=$message['created_at']?> </i>
 						</div>
 					<?php endforeach ?>
@@ -39,7 +48,11 @@
 						<textarea name="message" class='form-control' id="messageText" rows="5" placeholder='<?=ENTER_MESSAGE?>' required></textarea>
 						<input type="hidden" name='author_id' value='<?=$_SESSION['userData']['id']?>'>
 						<input type="hidden" name='recipient_id' value='<?=$userId?>'>
-						<button type='submit' class='btn btn-success'> <?=SEND_MESSAGE?> </button>							
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" name='messageFile'>
+							<label class="custom-file-label" for="messageFile"> <?=CHOOSE_FILE?> </label>
+						</div> <br>	<br>
+						<button type='submit' class='btn btn-success'> <?=SEND_MESSAGE?> </button>
 					</form>	
 				</div>
 			</div>

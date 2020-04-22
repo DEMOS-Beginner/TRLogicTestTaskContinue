@@ -34,7 +34,9 @@
 		* Заносит данные пользователя в базу данных
 		* @param string $userName
 		* @param string $userEmail
+		* @param string $userCity
 		* @param string $userPassword
+		* @param string $aboutUser
 		* @return array $userData
 		*/
 		public function registerNewUser($userName, $userEmail, $userCity, $userPassword, $aboutUser)

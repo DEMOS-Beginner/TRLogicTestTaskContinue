@@ -16,7 +16,7 @@
 		* Возвращает сообщения пользователей 
 		* @param int $authorId
 		* @param int $recipientId
-		* @return array messages
+		* @return array $messages
 		*/
 		public function getMessages($authorId, $recipientId)
 		{
@@ -24,6 +24,9 @@
 			$recipient_messages = $this->getRecipientMessages($authorId, $recipientId);
 
 			$messages = array_merge($author_messages, $recipient_messages);
+
+			//Сортирует массив массивов по опредённому полю
+			$messages = sortArraysByIntField($messages, 'id');
 
 			return $messages;
 
@@ -79,7 +82,7 @@
 		* @param string $text
 		* @param int $authorId
 		* @param int $recipientId
-		* @return bool $result
+		* @return int $messageId
 		*/
 		public function sendMessage($text, $authorId, $recipientId)
 		{
@@ -87,7 +90,32 @@
 			$query = $this->db->prepare($sql);
 			$result = $query->execute(["txt" => $text, "author" => $authorId, "recipient" => $recipientId]);
 
-			return $result;
+			if ($result) {
+				$query = $this->db->query("SELECT LAST_INSERT_ID()");
+				$messageId = $query->fetchColumn();
+			}
+
+			return $messageId;
+		}
+
+
+		/**
+		* Сохраняет прикреплённый файл в базу данных
+		* @param string $newName
+		* @param int $messageId
+		* @return boolean $result
+		*/
+		public function uploadFile($oldName, $newName, $messageId)
+		{
+			$sql = 'UPDATE messages SET original_filename = :oldname, file = :file WHERE id = :id';
+			$query = $this->db->prepare($sql);
+			$result = $query->execute([
+				'oldname' => $oldName,
+				'file'    => $newName,
+				'id'      => $messageId,
+			]);
+
+			return $result;			
 		}
 
 	}

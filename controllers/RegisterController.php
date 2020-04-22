@@ -78,11 +78,11 @@
 		*/
 		public function uploadAction()
 		{
-			$imageUploader = new ImageUploader;
-			if (!$imageUploader->checkImage()) {
+			$imageUploader = new ImageUploader('image');
+			if (!$imageUploader->checkFile()) {
 				redirect("/user?error=".UPLOAD_IMAGE_ERROR);
 			}
-			$filePath = $imageUploader->getImagePath();
+			$filePath = $imageUploader->getFilePath();
 
 			//Копируем фото на сервер.
 			if ($imageUploader->copyImageToServer($filePath)){

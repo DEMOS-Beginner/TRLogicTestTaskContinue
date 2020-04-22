@@ -9,6 +9,7 @@
 	//Подключение необходимых компонентов
 	require_once 'Controller.php';
 	require_once '../models/MessageModel.php';
+	require_once '../components/FileUploader.php';
 
 	class MessageController extends Controller
 	{
@@ -28,9 +29,10 @@
 
 			$model = new MessageModel;
 			$messages = $model->getMessages($_SESSION['userData']['id'], $userId);
+			$error = isset($_GET['error']) ? $_GET['error'] : null;
 
 			$this->loadTemplate('header');
-			$this->loadTemplate('messages', ['userId' => $userId, 'messages' => $messages]);
+			$this->loadTemplate('messages', ['userId' => $userId, 'messages' => $messages, 'error' => $errors]);
 			$this->loadTemplate('footer');
 		}
 
@@ -43,17 +45,52 @@
 			if (!isset($_SESSION['userData'])) {
 				redirect('/auth');
 			}
-			d($_FILES);
+			
 			$text = filter_var(trim($_POST['message']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$authorId = $_POST['author_id'];
-			$recipientId = $_POST['recipient_id'];	
+			$recipientId = $_POST['recipient_id'];
+			$file = !empty($_FILES['messageFile']['name']) ? $_FILES['messageFile'] : null;
 
 			$model = new MessageModel;
-
-			if ($model->sendMessage($text, $authorId, $recipientId)) {
-				redirect($_SERVER['QUERY_STRING']);
+			$messageId = $model->sendMessage($text, $authorId, $recipientId);
+			if ($messageId) {
+				if ($file) {
+					$this->uploadFile($recipientId, $messageId);
+				}
+				redirect("/message/{$recipientId}");
 			}
 
+		}
+
+
+		/**
+		* Загружает файл на сервер
+		* @param int $recipientId
+		* @param int $messageId
+		* @return boolean $result
+		*/
+		public function uploadFile($recipientId, $messageId)
+		{
+			$fileUploader = new FileUploader('messageFile');
+			$filePath = $fileUploader->getFilePath();
+			$fileName = $fileUploader->checkFile();
+
+			//Копируем фото на сервер.
+			if ($fileUploader->copyFileToServer($filePath)){
+
+				//Генерируем новое уникальное имя.
+				$newName = $fileUploader->generateNewFileName();
+				$newPath = $fileUploader->getNewPath($filePath);
+
+				//Загружаем название фото в базу данных.
+				$model = new MessageModel;
+				if ($model->uploadFile($fileName, $newName, $messageId)) {
+					redirect("/message/{$recipientId}");
+				} else {
+					redirect("/message/{$recipientId}?error=".UPLOAD_ERROR);
+				}
+			}
+			redirect("/message/{$recipientId}?error=".UPLOAD_ERROR);
 		}
 
 	}
